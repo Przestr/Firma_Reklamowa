@@ -16,9 +16,6 @@ import javax.ws.rs.Produces;
 @Consumes({ "application/json" })
 @Produces({ "application/json" })
 
-//@Consumes({ "application/xml" })
-//@Produces({ "application/xml" })
-
 public class FirmaReklamowaREST implements FirmaReklamowa {
 
 	@EJB

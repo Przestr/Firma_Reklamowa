@@ -9,18 +9,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
 
 
 @Entity
-//@XmlRootElement
 public class Klient implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue
-//	@XmlAttribute
 	int id;
 	String imie;
 	String nazwisko;
