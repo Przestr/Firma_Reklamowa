@@ -9,8 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 //@XmlRootElement
@@ -25,6 +26,7 @@ public class Billboard {
 	public Faktura faktura;
 	
 	@OneToMany(mappedBy="billboard",fetch = FetchType.EAGER)
+	@JsonManagedReference(value="billboard")
 	public List<BillboardReklama> billboardReklamy = new ArrayList<BillboardReklama>();
 
 	public int getId() {

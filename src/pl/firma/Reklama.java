@@ -14,6 +14,9 @@ import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 //@XmlRootElement
 public class Reklama {
@@ -25,6 +28,7 @@ public class Reklama {
 	String tresc;
 	
 	@OneToMany(mappedBy="reklama",fetch = FetchType.EAGER)
+	@JsonManagedReference(value="reklama")
 	public List<BillboardReklama> billboardReklamy = new ArrayList<BillboardReklama>();
 
 	public int getId() {

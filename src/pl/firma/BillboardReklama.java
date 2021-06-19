@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class BillboardReklama {
 	
@@ -20,11 +23,25 @@ public class BillboardReklama {
 	BigDecimal kwota;
 	
 	@ManyToOne
+    @JsonBackReference(value="billboard")
 	public Billboard billboard;
 	
 	@ManyToOne
+    @JsonBackReference(value="reklama")
 	public Reklama reklama;
 	
+	public Billboard getBillboard() {
+		return billboard;
+	}
+	public void setBillboard(Billboard billboard) {
+		this.billboard = billboard;
+	}
+	public Reklama getReklama() {
+		return reklama;
+	}
+	public void setReklama(Reklama reklama) {
+		this.reklama = reklama;
+	}
 	public int getId() {
 		return id;
 	}
