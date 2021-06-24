@@ -3,6 +3,7 @@ package pl.firma;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -23,9 +25,10 @@ public class Billboard {
 	String adres;
 	
 	@ManyToOne
+    @JsonBackReference(value="billboard")
 	public Faktura faktura;
 	
-	@OneToMany(mappedBy="billboard",fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="billboard",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JsonManagedReference(value="billboard")
 	public List<BillboardReklama> billboardReklamy = new ArrayList<BillboardReklama>();
 

@@ -72,4 +72,54 @@ public class FirmaReklamowaEJB {
 		Reklama reklama = manager.find(Reklama.class,id);
 		manager.remove(reklama);
 	}
+	
+	//KLIENT
+	public void createKlient(Klient klient) {
+		manager.persist(klient);
+	}
+	
+	public List<Klient> getAllKlient() {
+		Query q = manager.createQuery("select k from Klient k");
+		@SuppressWarnings("unchecked")
+		List<Klient> list = q.getResultList();
+		return list;
+	}
+	
+	public Klient getKlient(int id) {
+		return manager.find(Klient.class, id);
+	}
+	
+	public void updateKlient(Klient klient) {
+		klient = manager.merge(klient);
+	}
+	
+	public void deleteKlient(int id) {
+		Klient klient = manager.find(Klient.class,id);
+		manager.remove(klient);
+	}
+	
+	//FAKTURA
+	public void createFaktura(Faktura faktura) {
+		manager.persist(faktura);
+	}
+	
+	public List<Faktura> getAllFaktura() {
+		Query q = manager.createQuery("select f from Faktura f");
+		@SuppressWarnings("unchecked")
+		List<Faktura> list = q.getResultList();
+		return list;
+	}
+	
+	public Faktura getFaktura(int id) {
+		return manager.find(Faktura.class, id);
+	}
+	
+	public void updateFaktura(Faktura faktura) {
+		faktura = manager.merge(faktura);
+	}
+	
+	public void deleteFaktura(int id) {
+		Faktura faktura = manager.find(Faktura.class,id);
+		manager.remove(faktura);
+	}
 }

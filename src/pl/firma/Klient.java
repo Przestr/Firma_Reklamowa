@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 public class Klient implements Serializable{
@@ -22,7 +24,8 @@ public class Klient implements Serializable{
 	String nazwisko;
 	String pesel;
 	
-	@OneToMany(mappedBy="klient",fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="klient",fetch=FetchType.EAGER)
+	@JsonManagedReference(value="faktura")
 	public List<Faktura> faktury = new ArrayList<Faktura>();
 
 	public int getId() {

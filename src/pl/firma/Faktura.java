@@ -13,6 +13,9 @@ import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 //@XmlRootElement
 public class Faktura {
@@ -25,9 +28,11 @@ public class Faktura {
 	String nip;
 	
 	@ManyToOne
+    @JsonBackReference(value="faktura")
 	public Klient klient;
 	
-	@OneToMany(mappedBy="faktura",fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="faktura",fetch=FetchType.EAGER)
+	@JsonManagedReference(value="billboard")
 	public List<Billboard> billboardy = new ArrayList<Billboard>();
 	
 	public Klient getKlient() {
