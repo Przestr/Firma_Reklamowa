@@ -113,7 +113,7 @@ public class FirmaReklamowaEJB {
 			billboardReklama.setBillboard(billboard);
 		}
 		if(dto.getIdr()>0){
-			Reklama reklama = manager.find(Reklama.class, dto.idb);
+			Reklama reklama = manager.find(Reklama.class, dto.idr);
 			billboardReklama.setReklama(reklama);
 		}
 		billboardReklama = manager.merge(billboardReklama);
