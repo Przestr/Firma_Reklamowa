@@ -254,7 +254,7 @@ public class FirmaReklamowaREST implements FirmaReklamowa {
 	@DELETE
 	@Path("/faktura/{id}")
 	public void deleteFaktura(@PathParam("id") int id) {
-		bean.deleteKlient(id);
+		bean.deleteFaktura(id);
 	}
 	
 	@Override
