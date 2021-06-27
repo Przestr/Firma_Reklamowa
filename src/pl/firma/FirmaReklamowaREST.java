@@ -73,6 +73,46 @@ public class FirmaReklamowaREST implements FirmaReklamowa {
 			@PathParam("idr") int idr) {
 		bean.addReklamaToBillboard(billboardReklama, idb, idr);
 	}
+	
+	//BILLBOARDREKLAMA	
+	
+
+	@Override
+	@TransactionAttribute
+	@GET
+	@Path("/billboardReklama")
+	public List<BillboardReklama> getAllBillboardReklama() {
+		return bean.getAllBillboardReklama();
+	}
+
+	@Override
+	@GET
+	@Path("/billboardReklama/{id}")
+	public BillboardReklama getBillboardReklama(@PathParam("id") int id) {
+		BillboardReklama billboardReklama = bean.getBillboardReklama(id);
+		return billboardReklama;
+
+	}
+	
+	@Override
+	@PUT
+	@Path("/billboardReklama")
+	public String updateBillboardReklama(BillboardReklama billboardReklama) {
+		try {
+			bean.updateBillboardReklama(billboardReklama);
+			return "car updated!";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "car not updated :(";
+		}
+	}
+	
+	@Override
+	@DELETE
+	@Path("/billboardReklama/{id}")
+	public void deleteBillboardReklama(@PathParam("id") int id) {
+		bean.deleteBillboardReklama(id);
+	}
 
 	// REKLAMA
 	@Override
@@ -207,6 +247,13 @@ public class FirmaReklamowaREST implements FirmaReklamowa {
 	@Path("/faktura/{id}")
 	public void deleteFaktura(@PathParam("id") int id) {
 		bean.deleteKlient(id);
+	}
+	
+	@Override
+	@POST
+	@Path("/faktura/{idf}/{idk}")
+	public void addFakturaToKlient(@PathParam("idf") int idf, @PathParam("idk") int idk) {
+		bean.addFakturaToKlient(idf, idk);
 	}
 
 }

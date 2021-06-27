@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -27,7 +28,7 @@ public class Reklama {
 	
 	String tresc;
 	
-	@OneToMany(mappedBy="reklama",fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="reklama",fetch = FetchType.EAGER, orphanRemoval = true)
 	@JsonManagedReference(value="reklama")
 	public List<BillboardReklama> billboardReklamy = new ArrayList<BillboardReklama>();
 

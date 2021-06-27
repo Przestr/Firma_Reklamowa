@@ -19,6 +19,16 @@ public interface FirmaReklamowa {
 	
 	public abstract void addReklamaToBillboard(BillboardReklama billboardReklama, int idb, int idr);
 	
+	//BILLBOARD REKLAMA
+	
+	public abstract List<BillboardReklama> getAllBillboardReklama();
+	
+	public abstract BillboardReklama getBillboardReklama(int id);
+	
+	public abstract String updateBillboardReklama(BillboardReklama billboardReklama);
+	
+	public abstract void deleteBillboardReklama(int id);
+	
 	//REKLAMA
 	public abstract void createReklama(Reklama reklama);	
 	
@@ -51,5 +61,7 @@ public interface FirmaReklamowa {
 	public abstract String updateFaktura(Faktura faktura);
 	
 	public abstract void deleteFaktura(int id);
+	
+	public abstract void addFakturaToKlient(int idf, int idk);
 
 }

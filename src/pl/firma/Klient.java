@@ -14,12 +14,12 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
-public class Klient implements Serializable{
-	private static final long serialVersionUID = 1L;
+public class Klient{
 	
 	@Id
 	@GeneratedValue
 	int id;
+	
 	String imie;
 	String nazwisko;
 	String pesel;
@@ -31,26 +31,42 @@ public class Klient implements Serializable{
 	public int getId() {
 		return id;
 	}
-	
-	public String getName() {
-		return this.imie;
+
+	public void setId(int id) {
+		this.id = id;
 	}
-	public void setName(String name) {
-		this.imie = name;
+
+	public String getImie() {
+		return imie;
 	}
-	public String getSurname() {
+
+	public void setImie(String imie) {
+		this.imie = imie;
+	}
+
+	public String getNazwisko() {
 		return nazwisko;
 	}
-	public void setModel(String nazwisko) {
+
+	public void setNazwisko(String nazwisko) {
 		this.nazwisko = nazwisko;
 	}
+
 	public String getPesel() {
-		return this.pesel;
+		return pesel;
 	}
+
 	public void setPesel(String pesel) {
 		this.pesel = pesel;
 	}
-	public void setIdc(int id) {
-		this.id = id;
-	}	
+
+	public List<Faktura> getFaktury() {
+		return faktury;
+	}
+
+	public void setFaktury(List<Faktura> faktury) {
+		this.faktury = faktury;
+	}
+
+	
 }

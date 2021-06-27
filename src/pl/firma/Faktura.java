@@ -34,30 +34,46 @@ public class Faktura {
 	@OneToMany(mappedBy="faktura",fetch=FetchType.EAGER)
 	@JsonManagedReference(value="billboard")
 	public List<Billboard> billboardy = new ArrayList<Billboard>();
-	
-	public Klient getKlient() {
-		return klient;
+
+	public int getId() {
+		return id;
 	}
-	public void setKlient(Klient klient) {
-		this.klient = klient;
+
+	public void setId(int id) {
+		this.id = id;
 	}
-	public List<Billboard> getBillboardy() {
-		return billboardy;
-	}
-	public void setBillboardy(List<Billboard> billboardy) {
-		this.billboardy = billboardy;
-	}
+
 	public BigDecimal getKwota() {
 		return kwota;
 	}
+
 	public void setKwota(BigDecimal kwota) {
 		this.kwota = kwota;
 	}
+
 	public String getNip() {
 		return nip;
 	}
+
 	public void setNip(String nip) {
 		this.nip = nip;
 	}
 
+	public Klient getKlient() {
+		return klient;
+	}
+
+	public void setKlient(Klient klient) {
+		this.klient = klient;
+	}
+
+	public List<Billboard> getBillboardy() {
+		return billboardy;
+	}
+
+	public void setBillboardy(List<Billboard> billboardy) {
+		this.billboardy = billboardy;
+	}
+	
+	
 }

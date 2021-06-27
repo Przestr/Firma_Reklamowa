@@ -3,9 +3,11 @@ package pl.firma;
 import java.math.BigDecimal;
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -22,11 +24,11 @@ public class BillboardReklama {
 	Date dataSciagneicia;
 	BigDecimal kwota;
 	
-	@ManyToOne
+	@ManyToOne(targetEntity = Billboard.class)
     @JsonBackReference(value="billboard")
 	public Billboard billboard;
 	
-	@ManyToOne
+	@ManyToOne(targetEntity = Reklama.class)
     @JsonBackReference(value="reklama")
 	public Reklama reklama;
 	

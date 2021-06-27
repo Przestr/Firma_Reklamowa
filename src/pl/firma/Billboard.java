@@ -28,7 +28,7 @@ public class Billboard {
     @JsonBackReference(value="billboard")
 	public Faktura faktura;
 	
-	@OneToMany(mappedBy="billboard",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="billboard",fetch = FetchType.EAGER, orphanRemoval = true)
 	@JsonManagedReference(value="billboard")
 	public List<BillboardReklama> billboardReklamy = new ArrayList<BillboardReklama>();
 

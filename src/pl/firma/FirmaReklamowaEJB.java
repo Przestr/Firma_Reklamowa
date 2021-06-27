@@ -48,6 +48,28 @@ public class FirmaReklamowaEJB {
 		billboardReklama.setReklama(reklama);
 	}
 	
+	//BILLBOARD REKLAMA	
+	
+	public List<BillboardReklama> getAllBillboardReklama() {
+		Query q = manager.createQuery("select b from BillboardReklama b");
+		@SuppressWarnings("unchecked")
+		List<BillboardReklama> list = q.getResultList();
+		return list;
+	}
+	
+	public BillboardReklama getBillboardReklama(int id) {
+		return manager.find(BillboardReklama.class, id);
+	}
+	
+	public void updateBillboardReklama(BillboardReklama billboardReklama) {
+		billboardReklama = manager.merge(billboardReklama);
+	}
+	
+	public void deleteBillboardReklama(int id) {
+		BillboardReklama billboardReklama = manager.find(BillboardReklama.class,id);
+		manager.remove(billboardReklama);
+	}
+	
 	//REKLAMA
 	public void createReklama(Reklama reklama) {
 		manager.persist(reklama);
@@ -121,5 +143,11 @@ public class FirmaReklamowaEJB {
 	public void deleteFaktura(int id) {
 		Faktura faktura = manager.find(Faktura.class,id);
 		manager.remove(faktura);
+	}
+	
+	public void addFakturaToKlient(int idf, int idk) {
+		Klient klient = manager.find(Klient.class,idk);
+		Faktura faktura = manager.find(Faktura.class,idf);
+		faktura.setKlient(klient);
 	}
 }
