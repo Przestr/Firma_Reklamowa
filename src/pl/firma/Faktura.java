@@ -28,7 +28,7 @@ public class Faktura {
 	String nip;
 	
 	@ManyToOne
-    @JsonBackReference(value="faktura")
+    @JsonBackReference(value="klient")
 	public Klient klient;
 	
 	@OneToMany(mappedBy="faktura",fetch=FetchType.EAGER)

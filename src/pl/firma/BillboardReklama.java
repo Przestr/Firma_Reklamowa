@@ -21,7 +21,7 @@ public class BillboardReklama {
 	int id;
 	
 	Date dataPowieszenia;
-	Date dataSciagneicia;
+	Date dataSciagniecia;
 	BigDecimal kwota;
 	
 	@ManyToOne(targetEntity = Billboard.class)
@@ -31,42 +31,55 @@ public class BillboardReklama {
 	@ManyToOne(targetEntity = Reklama.class)
     @JsonBackReference(value="reklama")
 	public Reklama reklama;
-	
-	public Billboard getBillboard() {
-		return billboard;
-	}
-	public void setBillboard(Billboard billboard) {
-		this.billboard = billboard;
-	}
-	public Reklama getReklama() {
-		return reklama;
-	}
-	public void setReklama(Reklama reklama) {
-		this.reklama = reklama;
-	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public Date getDataPowieszenia() {
 		return dataPowieszenia;
 	}
+
 	public void setDataPowieszenia(Date dataPowieszenia) {
 		this.dataPowieszenia = dataPowieszenia;
 	}
-	public Date getDataSciagneicia() {
-		return dataSciagneicia;
+
+	public Date getDataSciagniecia() {
+		return dataSciagniecia;
 	}
-	public void setDataSciagneicia(Date dataSciagneicia) {
-		this.dataSciagneicia = dataSciagneicia;
+
+	public void setDataSciagniecia(Date dataSciagniecia) {
+		this.dataSciagniecia = dataSciagniecia;
 	}
+
 	public BigDecimal getKwota() {
 		return kwota;
 	}
+
 	public void setKwota(BigDecimal kwota) {
 		this.kwota = kwota;
 	}
+
+	public Billboard getBillboard() {
+		return billboard;
+	}
+
+	public void setBillboard(Billboard billboard) {
+		this.billboard = billboard;
+	}
+
+	public Reklama getReklama() {
+		return reklama;
+	}
+
+	public void setReklama(Reklama reklama) {
+		this.reklama = reklama;
+	}
+	
+	
 	
 }

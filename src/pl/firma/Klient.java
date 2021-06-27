@@ -25,7 +25,7 @@ public class Klient{
 	String pesel;
 	
 	@OneToMany(mappedBy="klient",fetch=FetchType.EAGER)
-	@JsonManagedReference(value="faktura")
+	@JsonManagedReference(value="klient")
 	public List<Faktura> faktury = new ArrayList<Faktura>();
 
 	public int getId() {
