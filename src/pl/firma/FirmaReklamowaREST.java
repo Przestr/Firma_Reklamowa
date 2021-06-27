@@ -25,15 +25,15 @@ public class FirmaReklamowaREST implements FirmaReklamowa {
 	@Override
 	@POST
 	@Path("/billboard")
-	public void createBillboard(Billboard billboard) {
-		bean.createBillboard(billboard);
+	public void createBillboard(BillboardDTO dto) {
+		bean.createBillboard(dto);
 	}
 
 	@Override
 	@TransactionAttribute
 	@GET
 	@Path("/billboard")
-	public List<Billboard> getAllBillboards() {
+	public List<BillboardDTO> getAllBillboards() {
 		return bean.getAllBillboards();
 	}
 
@@ -49,9 +49,9 @@ public class FirmaReklamowaREST implements FirmaReklamowa {
 	@Override
 	@PUT
 	@Path("/billboard")
-	public String updateBillboard(Billboard billboard) {
+	public String updateBillboard(BillboardDTO dto) {
 		try {
-			bean.updateBillboard(billboard);
+			bean.updateBillboard(dto);
 			return "car updated!";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -68,10 +68,9 @@ public class FirmaReklamowaREST implements FirmaReklamowa {
 
 	@Override
 	@POST
-	@Path("/billboardReklama/{idb}/{idr}")
-	public void addReklamaToBillboard(BillboardReklama billboardReklama, @PathParam("idb") int idb,
-			@PathParam("idr") int idr) {
-		bean.addReklamaToBillboard(billboardReklama, idb, idr);
+	@Path("/billboardReklama")
+	public void addReklamaToBillboard(BillboardReklamaDTO dto) {
+		bean.addReklamaToBillboard(dto);
 	}
 	
 	//BILLBOARDREKLAMA	
@@ -81,7 +80,7 @@ public class FirmaReklamowaREST implements FirmaReklamowa {
 	@TransactionAttribute
 	@GET
 	@Path("/billboardReklama")
-	public List<BillboardReklama> getAllBillboardReklama() {
+	public List<BillboardReklamaDTO> getAllBillboardReklama() {
 		return bean.getAllBillboardReklama();
 	}
 
@@ -97,9 +96,9 @@ public class FirmaReklamowaREST implements FirmaReklamowa {
 	@Override
 	@PUT
 	@Path("/billboardReklama")
-	public String updateBillboardReklama(BillboardReklama billboardReklama) {
+	public String updateBillboardReklama(BillboardReklamaDTO dto) {
 		try {
-			bean.updateBillboardReklama(billboardReklama);
+			bean.updateBillboardReklama(dto);
 			return "car updated!";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -204,37 +203,46 @@ public class FirmaReklamowaREST implements FirmaReklamowa {
 		bean.deleteKlient(id);
 	}
 	
+	@Override
+	@GET
+	@Path("/klient/getFaktury/{id}")
+	public List<FakturaDTO> getFaktury(@PathParam("id") int id) {
+		List<FakturaDTO> dtoList = bean.getFaktury(id);
+		return dtoList;
+
+	}
+	
 	//FAKTURA
 	@Override
 	@POST
 	@Path("/faktura")
-	public void createFaktura(Faktura faktura) {
-		bean.createFaktura(faktura);
+	public void createFaktura(FakturaDTO dto) {
+		bean.createFaktura(dto);
 	}
 
 	@Override
 	@TransactionAttribute
 	@GET
 	@Path("/faktura")
-	public List<Faktura> getAllFaktura() {
+	public List<FakturaDTO> getAllFaktura() {
 		return bean.getAllFaktura();
 	}
 
 	@Override
 	@GET
 	@Path("/faktura/{id}")
-	public Faktura getFaktura(@PathParam("id") int id) {
-		Faktura faktura = bean.getFaktura(id);
-		return faktura;
+	public FakturaDTO getFaktura(@PathParam("id") int id) {
+		FakturaDTO dto = bean.getFaktura(id);
+		return dto;
 
 	}
 
 	@Override
 	@PUT
 	@Path("/faktura")
-	public String updateFaktura(Faktura faktura) {
+	public String updateFaktura(FakturaDTO dto) {
 		try {
-			bean.updateFaktura(faktura);
+			bean.updateFaktura(dto);
 			return "car updated!";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -254,6 +262,15 @@ public class FirmaReklamowaREST implements FirmaReklamowa {
 	@Path("/faktura/{idf}/{idk}")
 	public void addFakturaToKlient(@PathParam("idf") int idf, @PathParam("idk") int idk) {
 		bean.addFakturaToKlient(idf, idk);
+	}
+	
+	@Override
+	@GET
+	@Path("/faktura/getBillboardy/{id}")
+	public List<BillboardDTO> getBillboardy(@PathParam("id") int id) {
+		List<BillboardDTO> dtoList = bean.getBillboardy(id);
+		return dtoList;
+
 	}
 
 }

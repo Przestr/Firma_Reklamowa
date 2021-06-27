@@ -7,25 +7,25 @@ import javax.ejb.Local;
 @Local
 public interface FirmaReklamowa {
 	
-	public abstract void createBillboard(Billboard billboard);	
+	public abstract void createBillboard(BillboardDTO dto);	
 	
-	public abstract List<Billboard> getAllBillboards();
+	public abstract List<BillboardDTO> getAllBillboards();
 	
 	public abstract Billboard getBillboard(int id);
 	
-	public abstract String updateBillboard(Billboard billboard);
+	public abstract String updateBillboard(BillboardDTO dto);
 	
 	public abstract void deleteBillboard(int id);
 	
-	public abstract void addReklamaToBillboard(BillboardReklama billboardReklama, int idb, int idr);
+	public abstract void addReklamaToBillboard(BillboardReklamaDTO dto);
 	
 	//BILLBOARD REKLAMA
 	
-	public abstract List<BillboardReklama> getAllBillboardReklama();
+	public abstract List<BillboardReklamaDTO> getAllBillboardReklama();
 	
 	public abstract BillboardReklama getBillboardReklama(int id);
 	
-	public abstract String updateBillboardReklama(BillboardReklama billboardReklama);
+	public abstract String updateBillboardReklama(BillboardReklamaDTO dto);
 	
 	public abstract void deleteBillboardReklama(int id);
 	
@@ -51,17 +51,21 @@ public interface FirmaReklamowa {
 	
 	public abstract void deleteKlient(int id);
 	
+	public abstract List<FakturaDTO> getFaktury(int id);
+	
 	//FAKTURA
-	public abstract void createFaktura(Faktura faktura);	
+	public abstract void createFaktura(FakturaDTO dto);	
 	
-	public abstract List<Faktura> getAllFaktura();
+	public abstract List<FakturaDTO> getAllFaktura();
 	
-	public abstract Faktura getFaktura(int id);
+	public abstract FakturaDTO getFaktura(int id);
 	
-	public abstract String updateFaktura(Faktura faktura);
+	public abstract String updateFaktura(FakturaDTO dto);
 	
 	public abstract void deleteFaktura(int id);
 	
 	public abstract void addFakturaToKlient(int idf, int idk);
+	
+	public abstract List<BillboardDTO> getBillboardy(int id);
 
 }

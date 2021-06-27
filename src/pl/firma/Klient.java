@@ -24,7 +24,7 @@ public class Klient{
 	String nazwisko;
 	String pesel;
 	
-	@OneToMany(mappedBy="klient",fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="klient",fetch=FetchType.EAGER, orphanRemoval = true)
 	@JsonManagedReference(value="klient")
 	public List<Faktura> faktury = new ArrayList<Faktura>();
 
