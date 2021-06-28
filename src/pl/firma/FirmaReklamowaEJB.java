@@ -189,6 +189,26 @@ public class FirmaReklamowaEJB {
 		return dtoList;
 	}
 	
+	public List<BillboardDTO> getBillboardyFromKlient(int id){
+		List<BillboardDTO> dtoList = new ArrayList<BillboardDTO>();
+		Klient klient =  manager.find(Klient.class, id);
+		List<Faktura> faktury = klient.getFaktury();
+		System.out.println(faktury.size());
+		List<Billboard> billboardy = new ArrayList<Billboard>();
+		for(Faktura faktura: faktury){
+			billboardy.addAll(faktura.getBillboardy());
+			System.out.println("EEEE");
+		}
+		for(Billboard billboard: billboardy){
+			BillboardDTO dto = new BillboardDTO();
+			dto.setId(billboard.getId());
+			dto.setAdres(billboard.getAdres());
+			dto.setIdf(billboard.getFaktura().getId());
+			dtoList.add(dto);
+		}
+		return dtoList;
+	}
+	
 	//FAKTURA
 	public void createFaktura(FakturaDTO dto) {
 		Faktura faktura = new Faktura();

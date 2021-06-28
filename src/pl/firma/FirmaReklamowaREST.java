@@ -212,6 +212,14 @@ public class FirmaReklamowaREST implements FirmaReklamowa {
 
 	}
 	
+	@Override
+	@GET
+	@Path("/klient/getBillboardy/{id}")
+	public List <BillboardDTO> getBillboardyFromKlient(@PathParam("id") int id){
+		List<BillboardDTO> dtoList = bean.getBillboardyFromKlient(id);
+		return dtoList;
+	}
+	
 	//FAKTURA
 	@Override
 	@POST
