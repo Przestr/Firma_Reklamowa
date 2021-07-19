@@ -55,6 +55,8 @@ public interface FirmaReklamowa {
 	
 	public abstract List<BillboardDTO> getBillboardyFromKlient(int id);
 	
+	public abstract List<ReklamaDTO> getReklamyFromKlient(int id);
+	
 	//FAKTURA
 	public abstract void createFaktura(FakturaDTO dto);	
 	

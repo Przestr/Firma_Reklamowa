@@ -2,7 +2,9 @@ package pl.firma;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -22,9 +24,13 @@ public class FirmaReklamowaEJB {
 		billboard.adres = dto.adres;
 		if(dto.idf > 0){
 			Faktura faktura = manager.find(Faktura.class, dto.idf);
+			//faktura.billboardy.add(billboard);
 			billboard.setFaktura(faktura);
+			System.out.println(faktura.getBillboardy().size());
 		}
 		manager.persist(billboard);
+		Faktura faktura = manager.find(Faktura.class, dto.idf);
+		System.out.println(faktura.getBillboardy().size());
 	}
 	
 	public List<BillboardDTO> getAllBillboards() {
@@ -192,12 +198,10 @@ public class FirmaReklamowaEJB {
 	public List<BillboardDTO> getBillboardyFromKlient(int id){
 		List<BillboardDTO> dtoList = new ArrayList<BillboardDTO>();
 		Klient klient =  manager.find(Klient.class, id);
-		List<Faktura> faktury = klient.getFaktury();
-		System.out.println(faktury.size());
-		List<Billboard> billboardy = new ArrayList<Billboard>();
+		Set<Faktura> faktury = new HashSet<Faktura>(klient.getFaktury());
+		Set<Billboard> billboardy = new HashSet<Billboard>();
 		for(Faktura faktura: faktury){
 			billboardy.addAll(faktura.getBillboardy());
-			System.out.println("EEEE");
 		}
 		for(Billboard billboard: billboardy){
 			BillboardDTO dto = new BillboardDTO();
@@ -209,6 +213,27 @@ public class FirmaReklamowaEJB {
 		return dtoList;
 	}
 	
+	public List<ReklamaDTO> getReklamyFromKlient(int id){
+		List<ReklamaDTO> dtoList = new ArrayList<ReklamaDTO>();
+		Klient klient =  manager.find(Klient.class, id);
+		Set<Faktura> faktury = new HashSet<Faktura>(klient.getFaktury());
+		Set<Billboard> billboardy = new HashSet<Billboard>();
+		Set<BillboardReklama> billboardReklamy = new HashSet<BillboardReklama>();
+		for(Faktura faktura: faktury){
+			billboardy.addAll(faktura.getBillboardy());
+		}
+		for(Billboard billboard: billboardy){
+			billboardReklamy.addAll(billboard.getBillboardReklamy());
+		}
+		for(BillboardReklama billboardReklama: billboardReklamy){
+			Reklama reklama = manager.find(Reklama.class, billboardReklama.getReklama().getId());
+			ReklamaDTO dto = new ReklamaDTO();
+			dto.setId(reklama.getId());
+			dto.setTresc(reklama.getTresc());
+			dtoList.add(dto);
+		}
+		return dtoList;
+	}	
 	//FAKTURA
 	public void createFaktura(FakturaDTO dto) {
 		Faktura faktura = new Faktura();
