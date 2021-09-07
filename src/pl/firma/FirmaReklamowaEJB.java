@@ -72,13 +72,15 @@ public class FirmaReklamowaEJB {
 		billboardReklama.setDataPowieszenia(dto.getDataPowieszenia());
 		billboardReklama.setDataSciagniecia(dto.getDataSciagniecia());
 		billboardReklama.setKwota(dto.getKwota());
+		if(dto.getIdr()>0 && dto.getIdb() >0){
 		Billboard billboard = manager.find(Billboard.class, dto.getIdb());
 		Reklama reklama = manager.find(Reklama.class, dto.getIdr());
 		billboardReklama.setBillboard(billboard);
 		billboardReklama.setReklama(reklama);
-		manager.persist(billboardReklama);
 		Faktura faktura = manager.find(Faktura.class, billboard.getFaktura().getId());
 		faktura.kwota = faktura.kwota.add(dto.kwota);
+		}
+		manager.persist(billboardReklama);
 	}
 	
 	//BILLBOARD REKLAMA	
