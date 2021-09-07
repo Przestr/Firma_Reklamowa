@@ -286,7 +286,6 @@ public class FirmaReklamowaREST implements FirmaReklamowa {
 	public List<BillboardDTO> getBillboardy(@PathParam("id") int id) {
 		List<BillboardDTO> dtoList = bean.getBillboardy(id);
 		return dtoList;
-
 	}
 
 }

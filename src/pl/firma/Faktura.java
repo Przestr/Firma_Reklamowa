@@ -24,7 +24,7 @@ public class Faktura {
 	@GeneratedValue
 //	@XmlAttribute
 	int id;
-	BigDecimal kwota;
+	BigDecimal kwota = new BigDecimal("0.0");
 	String nip;
 	
 	@ManyToOne

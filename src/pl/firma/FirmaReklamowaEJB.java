@@ -29,8 +29,6 @@ public class FirmaReklamowaEJB {
 			System.out.println(faktura.getBillboardy().size());
 		}
 		manager.persist(billboard);
-		Faktura faktura = manager.find(Faktura.class, dto.idf);
-		System.out.println(faktura.getBillboardy().size());
 	}
 	
 	public List<BillboardDTO> getAllBillboards() {
@@ -79,6 +77,8 @@ public class FirmaReklamowaEJB {
 		billboardReklama.setBillboard(billboard);
 		billboardReklama.setReklama(reklama);
 		manager.persist(billboardReklama);
+		Faktura faktura = manager.find(Faktura.class, billboard.getFaktura().getId());
+		faktura.kwota = faktura.kwota.add(dto.kwota);
 	}
 	
 	//BILLBOARD REKLAMA	
@@ -237,7 +237,9 @@ public class FirmaReklamowaEJB {
 	//FAKTURA
 	public void createFaktura(FakturaDTO dto) {
 		Faktura faktura = new Faktura();
-		faktura.kwota = dto.kwota;
+		if(dto.kwota != null){
+			 faktura.kwota = dto.kwota;
+		}
 		faktura.nip = dto.nip;
 		if(dto.idk > 0){
 			Klient klient = manager.find(Klient.class, dto.idk);
